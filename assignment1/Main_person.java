@@ -1,4 +1,4 @@
-// Q.14
+// Q.14 
 
 class Person {
     String name;
@@ -28,11 +28,14 @@ class Person {
     }
 }
 
-interface GradTeachingFellow {
-    String getTeachingFellow();
+interface StudentInterface {
+
+    String getAddress();
+
+    String getDepartment();
 }
 
-class Student extends Person {
+class Student extends Person implements StudentInterface {
     String address;
     String department;
 
@@ -47,16 +50,27 @@ class Student extends Person {
         System.out.println("Student Constructed.");
     }
 
-    String getAddress() {
+    @Override
+    public String getAddress() {
         return this.address;
     }
 
-    String getDepartment() {
+    @Override
+    public String getDepartment() {
         return this.department;
     }
 }
 
-class Teacher extends Person {
+interface TeacherInterface {
+
+    String getRank();
+
+    String getDepartment();
+
+    String getCourse();
+}
+
+class Teacher extends Person implements TeacherInterface {
     String rank;
     String department;
     String course;
@@ -74,15 +88,74 @@ class Teacher extends Person {
         System.out.println("Teacher Constructed.");
     }
 
-    String getRank() {
+    @Override
+    public String getRank() {
         return this.rank;
     }
 
-    String getDepartment() {
+    @Override
+    public String getDepartment() {
         return this.department;
     }
 
-    String getCourse() {
+    @Override
+    public String getCourse() {
+        return this.course;
+    }
+}
+
+class GradTeachingFellow extends Person implements StudentInterface, TeacherInterface {
+
+    String supervisor;
+    String address;
+    String department;
+    String rank;
+    String course;
+
+    GradTeachingFellow(
+            String name,
+            String date,
+            String sex,
+            //
+            String supervisor,
+            String address,
+            String department,
+            String rank,
+            String course) {
+        super(name, date, sex);
+        this.supervisor = supervisor;
+        this.address = address;
+        this.department = department;
+        this.rank = rank;
+        this.course = course;
+        System.out.println("Fellow Constructed.");
+    }
+
+    String getSupervisor() {
+        return this.supervisor;
+    }
+
+    // Student
+
+    @Override
+    public String getAddress() {
+        return this.address;
+    }
+
+    @Override
+    public String getDepartment() {
+        return this.department;
+    }
+
+    // Teacher
+
+    @Override
+    public String getRank() {
+        return this.rank;
+    }
+
+    @Override
+    public String getCourse() {
         return this.course;
     }
 }
@@ -96,8 +169,14 @@ public class Main_person {
         Student s1 = new Student("Piccolo", "4/5/6", "Male", "Raigarh", "CSE");
         Teacher t1 = new Teacher("Goku", "30/5/10", "Male", "HOD", "CSE", "B.Tech");
 
+        GradTeachingFellow g1 = new GradTeachingFellow("GradName", "12/02/00", "Male", "GradSupervisor", "Raigarh",
+                "CSE", "Fellow1", "PHD");
+
         System.out.println(p1.getName());
         System.out.println(s1.getName() + "  " + s1.getAddress());
         System.out.println(t1.getName() + "  " + t1.getRank());
+
+        System.out.println(g1.getName() + "  " + g1.getSupervisor());
+
     }
 }
