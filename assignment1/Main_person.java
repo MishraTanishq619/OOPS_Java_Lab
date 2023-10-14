@@ -27,6 +27,10 @@ class Person {
     }
 }
 
+interface GradTeachingFellow {
+    String getTeachingFellow();
+}
+
 class Student extends Person {
     String address;
     String department;
