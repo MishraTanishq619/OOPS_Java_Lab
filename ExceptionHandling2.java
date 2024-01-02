@@ -11,7 +11,8 @@ public class ExceptionHandling2 {
         try {
             m1 = (s1.nextInt());
             if (m1 > 100) {
-                OverException();
+                // OverException();
+                throw new Exception("Marks Greater than 100.");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -20,8 +21,8 @@ public class ExceptionHandling2 {
         }
     }
 
-    static void OverException() throws Exception {
-        throw new Exception("Marks Greater than 100.");
-    }
+    // static void OverException() throws Exception {
+    // throw new Exception("Marks Greater than 100.");
+    // }
 
 }
